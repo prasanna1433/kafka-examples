@@ -1,4 +1,4 @@
-package io.github.prasanna1433.streams;
+package io.github.prasanna1433.streams.processor;
 
 import org.apache.kafka.streams.processor.Processor;
 import org.apache.kafka.streams.processor.ProcessorContext;
