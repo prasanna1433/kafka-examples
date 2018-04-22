@@ -1,10 +1,8 @@
 # Apache Kafka Examples
 
-------------------------
-
 Apache Kafka is a popular pub-sub messaging queue.
 
-Please find the detailed documentation for Apache Kafka [here] (https://kafka.apache.org/)
+Please find the detailed documentation for Apache Kafka [here](https://kafka.apache.org/)
 
 This repository will hold the example for all the basic API's that are available in Apache Kafka
 
