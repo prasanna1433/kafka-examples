@@ -24,7 +24,7 @@ public class ProcessorAPI {
         streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG,applicationId);
         streamsConfiguration.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         streamsConfiguration.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
-        streamsConfiguration.put(StreamsConfig.BUFFERED_RECORDS_PER_PARTITION_CONFIG,200L);
+        streamsConfiguration.put(StreamsConfig.BUFFERED_RECORDS_PER_PARTITION_CONFIG,200);
 
         //build the topology for Kafka Streams
         Topology builder = new Topology();
