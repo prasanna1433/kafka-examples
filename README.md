@@ -1,5 +1,7 @@
 # Apache Kafka Examples
 
+https://travis-ci.org/prasanna1433/kafka-examples.svg?branch=master
+
 Apache Kafka is a popular pub-sub messaging queue.
 
 Please find the detailed documentation for Apache Kafka [here](https://kafka.apache.org/)
