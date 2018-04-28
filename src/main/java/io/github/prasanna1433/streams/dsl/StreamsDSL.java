@@ -1,20 +1,21 @@
-package io.github.prasanna1433.streams.processor;
+package io.github.prasanna1433.streams.dsl;
 
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.kstream.KStream;
 
+import java.util.Arrays;
 import java.util.Properties;
 
-public class ProcessorAPI {
+public class StreamsDSL {
     public static void main(String[] args){
-
         if(args.length < 2){
             System.out.println("Please send the input arguments <boostrapServer> <applicationId>");
         }
 
-        //get the bootstrap server and application id
         String bootstrapServer = args[0];
         String applicationId= args[1];
 
@@ -26,21 +27,20 @@ public class ProcessorAPI {
         streamsConfiguration.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         streamsConfiguration.put(StreamsConfig.BUFFERED_RECORDS_PER_PARTITION_CONFIG,200L);
 
-        //build the topology for Kafka Streams
-        Topology builder = new Topology();
+        //build kafka streams application using streams DSL
+        StreamsBuilder streamsBuilder=new StreamsBuilder();
+        KStream<String,String> source=streamsBuilder.stream("source-topic");
+        KStream<String, String> words = source.flatMapValues(value -> Arrays.asList(value.split("\\W+")));
+        words.to("sink-topic");
 
-        // add the source processor node that takes Kafka topic "source-topic" as input
-        builder.addSource("Source", "source-topic")
+        //build topology using StreamsBuilder
+        Topology topology = streamsBuilder.build();
 
-                // add the IntermediateProcessor node which takes the source processor as its upstream processor
-                .addProcessor("Process", () -> new IntermediateProcess(), "Source")
-
-                // add the sink processor node that takes Kafka topic "sink-topic" as output
-                // and the IntermediateProcessor node as its upstream processor
-                .addSink("Sink", "sink-topic", "Process");
+        //print the topology
+        System.out.println(topology.describe());
 
         //define and start the kafka streams application
-        KafkaStreams kafkaStreams=new KafkaStreams(builder,streamsConfiguration);
+        KafkaStreams kafkaStreams = new KafkaStreams(topology,streamsConfiguration);
         kafkaStreams.start();
 
     }
