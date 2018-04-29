@@ -17,6 +17,7 @@
 
     <properties>
         <kafka.version>1.1.0</kafka.version>
+        <junit.version>4.12</junit.version>
         <maven.compiler.source>1.9</maven.compiler.source>
         <maven.compiler.target>1.9</maven.compiler.target>
         <maven.compiler.version>3.7.0</maven.compiler.version>
@@ -27,6 +28,18 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>
             <version>${kafka.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams-test-utils</artifactId>
+            <version>${kafka.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
