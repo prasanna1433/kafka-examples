@@ -23,13 +23,14 @@ public class KafkaConsumerWithAutoOffsetCommit {
         //specify the consumer group name to which all the works can join
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG,"new-consumer-group");
         //allowing hte consumer to commit its offset automatically
-        consumerProperties.put("enable.auto.commit", "true");
+        consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
         //specify the interval with which the offsets should be commited to the __consumer_offset topic
-        consumerProperties.put("auto.commit.interval.ms", "1000");
+        consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
         //specify the key deserializer for the messages in the topic
-        consumerProperties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         //specify the value deserializer for the messages in the topic
-        consumerProperties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        consumerProperties.put(ConsumerConfig.CLIENT_ID_CONFIG,"client-for-new-topic");
 
         //instantiate kafka consumer where both the key and value from the topic consumed are string
         KafkaConsumer<String,String> kafkaConsumer=new KafkaConsumer(consumerProperties);
