@@ -48,21 +48,21 @@ configurations right.
 
 ## Critical Producer Configurations:
 
-* **acks: This configuration controls the number of followers that leader had to wait to get acknowledgement before responding to the producer client.
-* **batch.size: This configuration controls the amount of message that need to be batched before sending to the partition.
-* **linget.ms: This configuration controls the time that producer should wait in case of low/moderate message production where reaching batch.size take more time. This configuration places an upper bound of the amount of time the producer client
-need to wait before sending messages. Nagle's Algorithm  is the base for this configuration.
-* **retires: If there is a failure in sending the message to a topic producer client will retry the specified number of time before giving up. If we want to preserve the ordering we need to set max.inflight.requests.per.connection to 1
-* **compression.type: We can use this configuration to control the size of the message that is produced.
+* **acks:** This configuration controls the number of followers that leader had to wait to get acknowledgement before responding to the producer client.
+* **batch.size:** This configuration controls the amount of message that need to be batched before sending to a partition.
+* **linger.ms:** This configuration controls the time that producer should wait in case of low/moderate message production where reaching batch.size take more time. This configuration places an upper bound of the amount of time the producer client
+need to wait before sending messages. Nagle's Algorithm is the base for this configuration.
+* **retires:** If there is a failure in sending the message to a topic producer client will retry the specified number of time before giving up. If we want to preserve the ordering we need to set max.inflight.requests.per.connection to 1
+* **compression.type:** We can use this configuration to control the size of the message that is produced.
 
 Official definition and exhaustive list of producer configuration are [here](https://kafka.apache.org/documentation/#producerconfigs)
 
-## Critical Consumer configuration:
+## Critical Consumer Configurations:
 
-* **group.id: This is the consumer Group name that the workers will use to subscribe to a particular topic. It should be unique for each consumer in the cluster.
-* **session.timeout.ms: This is very important configuration that control the interval that the group coordinator should wait to hear back from the heart beat thread before initiating rebalancing the consumer group.
-* **auto.offset.reset: During the start up of a consumer group or if the consumers are not able to retrieve their offset it uses this configuration to decide where it should start reading from in the topic.
-* **max.poll.interval.ms: This configuration controls that amount of time that will take to do a poll for records or in other words the amount of time taken to process the fetched number of message by the consumer client.
+* **group.id:** This is the consumer Group name that the workers will use to subscribe to a particular topic. It should be unique for each consumer in the cluster.
+* **session.timeout.ms:** This is very important configuration that control the interval that the group coordinator should wait to hear back from the heart beat thread before initiating rebalancing the consumer group.
+* **auto.offset.reset:** During the start up of a consumer group or if the consumers are not able to retrieve their offset it uses this configuration to decide where it should start reading from in the topic.
+* **max.poll.interval.ms:** This configuration controls that amount of time that will take to do a poll for records or in other words the amount of time taken to process the fetched number of message by the consumer client.
 
 Official definition and exhaustive list of consumer configuration are [here](https://kafka.apache.org/documentation/#newconsumerconfigs)
 
